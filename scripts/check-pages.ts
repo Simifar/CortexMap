@@ -24,11 +24,11 @@ for (const file of files.filter(file=>file.endsWith('.html'))) {
   const html=await Bun.file(file).text();
   for (const match of html.matchAll(/(?:href|src|action|content)="([^"<>]+)"/g)) {
     const target=match[1].replaceAll('&amp;','&');
-    if (!target.startsWith('/') && !target.startsWith(origin+'/')) continue;
+    if (!target.startsWith('/') && !target.startsWith(origin+'/') && !target.startsWith('https://cortexmap.ru/')) continue;
     const url = new URL(target,siteUrl);
+    if (url.origin === 'https://cortexmap.ru' && origin !== 'https://cortexmap.ru') errors.push(file+': old domain remains');
     if(url.origin===origin && !await existsRoute(url.pathname)) errors.push(file+': missing target '+target);
   }
-  if (html.includes('https://cortexmap.ru') && origin !== 'https://cortexmap.ru') errors.push(file+': old domain remains');
 }
 const sitemap=await Bun.file('out/sitemap.xml').text();
 for(const match of sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)) {
