@@ -15,6 +15,7 @@
 <p align="center">
   <a href="https://github.com/Simifar/EnglishPath/actions/workflows/pages.yml"><img src="https://github.com/Simifar/EnglishPath/actions/workflows/pages.yml/badge.svg" alt="GitHub Pages"></a>
   <a href="https://github.com/Simifar/EnglishPath/actions/workflows/content-check.yml"><img src="https://github.com/Simifar/EnglishPath/actions/workflows/content-check.yml/badge.svg" alt="Content checks"></a>
+  <a href="https://github.com/Simifar/EnglishPath/actions/workflows/codeql.yml"><img src="https://github.com/Simifar/EnglishPath/actions/workflows/codeql.yml/badge.svg" alt="CodeQL"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-2563eb.svg" alt="MIT License"></a>
 </p>
 
@@ -39,6 +40,12 @@ CortexMap объединяет планы CEFR от A1 до C2, учебники
 ## Статус проекта
 
 CortexMap работает и опубликован на GitHub Pages. Каталог развивается постепенно: сведения, которые ещё не прошли редакционную проверку, явно отмечены как неподтверждённые. Такие записи не следует воспринимать как персональную рекомендацию или гарантию доступности внешнего сервиса.
+
+## Приватность и безопасность
+
+CortexMap не использует регистрацию, cookies, рекламные трекеры или системы аналитики. Избранное хранится в `localStorage` браузера и не отправляется на сервер.
+
+Изменения автоматически проверяются тестами и CodeQL, а Dependabot отслеживает обновления зависимостей и GitHub Actions. Если вы обнаружили уязвимость, не публикуйте её в обычном issue — используйте [приватный порядок сообщения](SECURITY.md).
 
 ## Быстрый запуск
 
