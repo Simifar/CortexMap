@@ -84,6 +84,7 @@ test('verified exams need scoreMapping for every declared CEFR level', () => {
   expect(() => validateCatalog(pending)).not.toThrow();
   const verified = copy(); const exam = verified.examGuides[0];
   exam.reviewStatus = 'verified'; exam.verifiedAt = '2026-09-09'; exam.linkCheckedAt = '2026-09-09';
+  exam.scoreMapping = [];
   expect(() => validateCatalog(verified)).toThrow('scoreMapping');
   exam.scoreMapping = exam.cefrLevels.map((cefr) => ({ cefr, score: 'см. шкалу' }));
   expect(() => validateCatalog(verified)).not.toThrow();
