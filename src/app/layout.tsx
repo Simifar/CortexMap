@@ -11,7 +11,15 @@ export const metadata: Metadata = {
   metadataBase: siteUrl,
   title: { default: siteName, template: `%s — ${siteName}` },
   description: siteDescription,
-  icons: { icon: withBasePath('/logo.svg'), shortcut: withBasePath('/logo.svg'), apple: withBasePath('/logo.svg') },
+  applicationName: siteName,
+  manifest: withBasePath('/manifest.webmanifest'),
+  appleWebApp: { capable: true, statusBarStyle: 'default', title: siteName },
+  formatDetection: { telephone: false },
+  icons: {
+    icon: withBasePath('/logo.svg'),
+    shortcut: withBasePath('/logo.svg'),
+    apple: [{ url: withBasePath('/icons/apple-touch-icon.png'), sizes: '180x180', type: 'image/png' }],
+  },
   alternates: { canonical: '/' },
   openGraph: { type: 'website', locale: 'ru_RU', siteName, title: siteName, description: siteDescription, url: '/', images: [absoluteSiteUrl('opengraph-image.png')] },
   twitter: { card: 'summary_large_image', title: siteName, description: siteDescription, images: [absoluteSiteUrl('opengraph-image.png')] },
@@ -21,6 +29,10 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   viewportFit: 'cover',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#fbfaf6' },
+    { media: '(prefers-color-scheme: dark)', color: '#171717' },
+  ],
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

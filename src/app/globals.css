@@ -68,22 +68,25 @@
 
 @layer base {
   html {
-    @apply max-w-full;
+    @apply max-w-full scroll-smooth;
+    scroll-padding-top: 7.5rem;
   }
   * {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply min-w-0 max-w-full overflow-x-clip bg-background text-foreground antialiased;
+    @apply flex min-h-screen min-w-0 max-w-full flex-col bg-background text-foreground antialiased;
   }
-  main { @apply min-w-0 max-w-full; }
+  main { @apply min-w-0 max-w-full flex-1; }
   input, select, textarea { font-size: 16px; }
   ::selection { @apply bg-primary/15 text-foreground; }
   a, button, input, select { @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background; }
 }
 
 @media (max-width: 639px) {
-  main :is(h1, h2, h3, p) { overflow-wrap: anywhere; }
+  main :is(h1, h2, h3, p, a, dd) { overflow-wrap: anywhere; }
+  h1, h2 { text-wrap: balance; }
+  p { text-wrap: pretty; }
 }
 
 @media print {

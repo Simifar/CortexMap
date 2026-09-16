@@ -11,5 +11,5 @@ export function BrandMark({ className = 'h-8 w-8', ...props }: SVGProps<SVGSVGEl
 }
 
 export function BrandLogo({ className = '', hideNameOnSmallScreens = false }: { className?: string; hideNameOnSmallScreens?: boolean }) {
-  return <span className={`inline-flex items-center gap-2 ${className}`}><BrandMark className="h-8 w-8 shrink-0" /><span className={`${hideNameOnSmallScreens ? 'hidden min-[420px]:inline' : ''} font-extrabold tracking-tight`}>CortexMap</span></span>;
+  return <span className={`inline-flex items-center gap-2 ${className}`}><BrandMark className="h-8 w-8 shrink-0" /><span className={`${hideNameOnSmallScreens ? 'hidden min-[360px]:inline' : ''} font-extrabold tracking-tight`}>CortexMap</span></span>;
 }

@@ -25,9 +25,9 @@ export default function SearchView({ params = {} }: { params?: Record<string, st
 
   return <>
     <SiteHeader />
-    <main className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
-      <h1 className="text-4xl font-bold tracking-tight">Поиск по справочнику</h1>
-      <p className="mt-3 text-muted-foreground">Найдите экзамен, уровень CEFR, учебник, тему или внешний ресурс.</p>
+    <main className="mx-auto max-w-4xl px-4 py-8 sm:px-6 sm:py-12">
+      <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Поиск по справочнику</h1>
+      <p className="mt-3 leading-7 text-muted-foreground">Найдите экзамен, уровень CEFR, учебник, тему или внешний ресурс.</p>
       <SearchForm key={JSON.stringify(params)} filters={filters} />
       <div className="mt-4 flex flex-wrap gap-2 text-sm">
         <span className="text-muted-foreground">Популярные запросы:</span>

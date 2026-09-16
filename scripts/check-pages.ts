@@ -35,6 +35,15 @@ for(const match of sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)) {
   if(!match[1].startsWith(siteUrl.replace(/\/$/,'')+'/')) errors.push('Wrong sitemap base '+match[1]);
   if(!await existsRoute(new URL(match[1]).pathname))errors.push('Missing sitemap route '+match[1]);
 }
+const manifestPath = join(root, 'manifest.webmanifest');
+if (!await Bun.file(manifestPath).exists()) errors.push('Missing /manifest.webmanifest');
+else {
+  const manifest = await Bun.file(manifestPath).json();
+  if (manifest.display !== 'standalone') errors.push('Manifest must use standalone display mode');
+  if (manifest.start_url !== basePath + '/') errors.push('Wrong manifest start_url ' + manifest.start_url);
+  if (manifest.scope !== basePath + '/') errors.push('Wrong manifest scope ' + manifest.scope);
+  for (const icon of manifest.icons ?? []) if (!await existsRoute(new URL(icon.src, siteUrl).pathname)) errors.push('Missing manifest icon ' + icon.src);
+}
 for(const file of files)if(/(?:^|[\\/])(?:\.env|server\.js|package\.json|bun\.lock)$/.test(file))errors.push('Unexpected deployment file '+file);
 if(errors.length)throw new Error(errors.join('\n'));
 console.log(`Static export verified: ${files.filter(file=>file.endsWith('.html')).length} HTML files, ${baseline.length} published routes, internal links/assets and sitemap.`);

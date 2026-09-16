@@ -1,5 +1,6 @@
 import { describe, expect, test } from 'bun:test';
 import { fileURLToPath } from 'node:url';
+import manifest from '../src/app/manifest';
 
 describe('deployment security configuration', () => {
   test('Caddy only proxies to the fixed Next.js upstream', async () => {
@@ -32,5 +33,26 @@ describe('deployment security configuration', () => {
       for (const [, reference] of actionReferences) expect(reference).toMatch(/^[0-9a-f]{40}$/);
       expect(timeouts.length).toBe(jobs.length);
     }
+  });
+
+  test('the installable web app has local icons and standalone metadata', async () => {
+    const webManifest = manifest();
+
+    expect(webManifest.display).toBe('standalone');
+    expect(webManifest.start_url).toBe('/');
+    expect(webManifest.scope).toBe('/');
+    expect(webManifest.theme_color).toBe('#102f61');
+    expect(webManifest.icons).toHaveLength(3);
+
+    for (const icon of webManifest.icons ?? []) {
+      expect(await Bun.file(new URL(`../public${String(icon.src)}`, import.meta.url)).exists()).toBe(true);
+    }
+  });
+
+  test('mobile layout does not conceal horizontal overflow globally', async () => {
+    const styles = await Bun.file(new URL('../src/app/globals.css', import.meta.url)).text();
+
+    expect(styles).not.toContain('overflow-x-clip');
+    expect(styles).not.toContain('overflow-x-hidden');
   });
 });
