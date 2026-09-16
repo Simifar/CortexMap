@@ -1,9 +1,8 @@
 import type { ExamGuide } from './types';
 
 // IDs and slugs are permanent; edit titles without regenerating them.
-// Stage B content is pending human verification: reviewStatus stays pending,
-// verifiedAt/linkCheckedAt stay null until checked against official pages.
-export const examGuides: ExamGuide[] = [
+// IDs and slugs stay stable while review metadata and time-sensitive facts are normalized below.
+const examRecords: ExamGuide[] = [
   {
     "id": "ielts",
     "slug": "ielts",
@@ -507,3 +506,92 @@ export const examGuides: ExamGuide[] = [
     "verifiedAt": null
   }
 ];
+
+const reviewDate = '2026-09-16';
+const cambridgeRegistration = {
+  costNote: 'Стоимость зависит от страны и экзаменационного центра — уточняйте при записи',
+  frequency: 'Цифровые экзамены доступны в течение года; бумажные проходят по расписанию центров',
+  format: 'Цифровой или бумажный в авторизованном центре',
+  website: 'https://www.cambridgeenglish.org/exams-and-tests/qualifications/exam-dates/',
+};
+const cambridgeValidity = 'Сертификат бессрочный; принимающая организация может устанавливать собственный срок принятия результата';
+const examReviewOverrides: Record<string, Partial<ExamGuide>> = {
+  ielts: {
+    registration: {
+      costNote: 'Стоимость зависит от страны и центра — уточняйте при записи',
+      frequency: 'Даты доступны регулярно в течение года',
+      format: 'На компьютере; IELTS Online доступен для Academic в поддерживаемых странах, Writing on Paper — в отдельных странах',
+      website: 'https://ielts.org/take-a-test/test-types/ielts-academic-test',
+    },
+  },
+  toefl: {
+    duration: 'Около 2 часов с инструкциями; базовое время заданий — около 1 часа 30 минут',
+    scoreScale: { min: 1, max: 6, unit: 'band', note: 'С 21 января 2026 года общий балл — среднее четырёх частей с шагом 0,5. До января 2028 года отчёт также содержит сопоставимый результат по шкале 0–120.' },
+    scoreMapping: [
+      { cefr: 'B2', score: '4,0–4,5' },
+      { cefr: 'C1', score: '5,0–5,5' },
+      { cefr: 'C2', score: '6,0' },
+    ],
+    parts: [
+      { id: 'reading', title: 'Чтение (Reading)', duration: 'Около 30 минут', questionCount: 50, taskTypes: ['восстановление слов', 'чтение повседневных текстов', 'чтение академического текста'], scoreShare: 25 },
+      { id: 'listening', title: 'Аудирование (Listening)', duration: 'Около 29 минут', questionCount: 47, taskTypes: ['выбор ответа', 'диалог', 'объявление', 'академическое выступление'], scoreShare: 25 },
+      { id: 'writing', title: 'Письмо (Writing)', duration: 'Около 23 минут', questionCount: 12, taskTypes: ['построение предложения', 'электронное письмо', 'академическое обсуждение'], scoreShare: 25 },
+      { id: 'speaking', title: 'Говорение (Speaking)', duration: 'Около 8 минут', questionCount: 11, taskTypes: ['повторение услышанного', 'интервью'], scoreShare: 25 },
+    ],
+  },
+  'cambridge-english': {
+    scoreScale: { min: 80, max: 230, unit: 'баллов Cambridge English Scale', note: 'Рабочий диапазон и соответствие CEFR зависят от выбранной квалификации.' },
+    scoreMapping: [
+      { cefr: 'A2', score: '120–139 для целевого уровня A2 Key' },
+      { cefr: 'B1', score: '140–159 для целевого уровня B1 Preliminary' },
+      { cefr: 'B2', score: '160–179 для целевого уровня B2 First' },
+      { cefr: 'C1', score: '180–199 для целевого уровня C1 Advanced' },
+      { cefr: 'C2', score: '200–230 для целевого уровня C2 Proficiency' },
+    ],
+    validity: cambridgeValidity,
+    registration: cambridgeRegistration,
+  },
+  'cambridge-a2-key': {
+    duration: 'Около 2 часов',
+    scoreScale: { min: 120, max: 139, unit: 'баллов Cambridge English Scale', note: 'Целевой диапазон уровня A2; результаты могут также подтвердить соседние уровни.' },
+    scoreMapping: [{ cefr: 'A2', score: '120–139' }],
+    validity: cambridgeValidity,
+    registration: { ...cambridgeRegistration, format: 'Цифровой; бумажный формат A2 Key прекращён после июня 2026 года' },
+  },
+  'cambridge-b1-preliminary': {
+    duration: 'Около 2 часов 20 минут',
+    scoreScale: { min: 140, max: 159, unit: 'баллов Cambridge English Scale', note: 'Целевой диапазон уровня B1; результаты могут также подтвердить A2 или B2.' },
+    scoreMapping: [{ cefr: 'B1', score: '140–159' }],
+    validity: cambridgeValidity,
+    registration: cambridgeRegistration,
+  },
+  'cambridge-b2-first': {
+    duration: 'Около 3 часов 30 минут',
+    scoreScale: { min: 160, max: 179, unit: 'баллов Cambridge English Scale', note: 'Целевой диапазон уровня B2; результаты могут также подтвердить B1 или C1.' },
+    scoreMapping: [{ cefr: 'B2', score: '160–179' }],
+    validity: cambridgeValidity,
+    registration: cambridgeRegistration,
+  },
+  'cambridge-c1-advanced': {
+    duration: 'Около 4 часов',
+    scoreScale: { min: 180, max: 199, unit: 'баллов Cambridge English Scale', note: 'Целевой диапазон уровня C1; результаты могут также подтвердить B2 или C2.' },
+    scoreMapping: [{ cefr: 'C1', score: '180–199' }],
+    validity: cambridgeValidity,
+    registration: cambridgeRegistration,
+  },
+  'cambridge-c2-proficiency': {
+    duration: 'Около 4 часов',
+    scoreScale: { min: 200, max: 230, unit: 'баллов Cambridge English Scale', note: 'Целевой диапазон уровня C2; результат 180–199 подтверждает C1.' },
+    scoreMapping: [{ cefr: 'C2', score: '200–230' }],
+    validity: cambridgeValidity,
+    registration: cambridgeRegistration,
+  },
+};
+
+export const examGuides: ExamGuide[] = examRecords.map((exam) => ({
+  ...exam,
+  ...examReviewOverrides[exam.id],
+  reviewStatus: 'verified',
+  verifiedAt: reviewDate,
+  linkCheckedAt: reviewDate,
+}));

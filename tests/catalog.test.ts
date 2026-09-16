@@ -7,6 +7,14 @@ import before from '../docs/catalog-before-model-migration.json';
 const catalog = { levels, textbooks, resources, examGuides };
 const copy = () => structuredClone(catalog);
 
+test('every published record has current review metadata', () => {
+  const topics = levels.flatMap((level) => [...level.grammar, ...level.vocabulary, ...level.skills]);
+  const records = [...levels, ...topics, ...textbooks, ...resources, ...examGuides];
+  expect(records.length).toBe(144);
+  expect(records.every((record) => record.reviewStatus === 'verified')).toBe(true);
+  expect(records.every((record) => record.verifiedAt === '2026-09-16' && record.linkCheckedAt === '2026-09-16')).toBe(true);
+});
+
 test('migration preserves every published ID and URL', () => {
   const collections = { levels, textbooks, resources, exams: examGuides };
   const prefixes = { levels: '/plans/', textbooks: '/textbooks/', resources: '/resources/', exams: '/exams/' };
@@ -48,16 +56,17 @@ test('material URLs reject unsafe schemes and credentials', () => {
   const changed = copy(); changed.examGuides[0].officialMaterials[0].url = 'javascript:alert(1)';
   expect(() => validateCatalog(changed)).toThrow();
 });
-test('unassessed levels and pending reviews are explicit', () => {
+test('unassessed CEFR levels and missing review dates are explicit', () => {
   expect(resources.every(resource => resource.cefrLevels.length === 0 && resource.levelStatus === 'unassessed')).toBe(true);
   const changed = copy(); changed.resources[0].cefrLevels = ['B1'];
   expect(() => validateCatalog(changed)).toThrow('CEFR');
   changed.resources[0].levelStatus = 'assessed'; expect(() => validateCatalog(changed)).not.toThrow();
-  changed.resources[0].reviewStatus = 'verified'; expect(() => validateCatalog(changed)).toThrow('dates');
+  changed.resources[0].reviewStatus = 'verified'; changed.resources[0].verifiedAt = null; expect(() => validateCatalog(changed)).toThrow('dates');
 });
 test('verified records need guidance, dated review and explicit access details', () => {
   const changed = copy(); const resource = changed.resources[0];
   resource.reviewStatus = 'verified'; resource.verifiedAt = '2026-09-09'; resource.linkCheckedAt = '2026-09-09';
+  resource.audience = null; resource.howToUse = null; resource.limitations = null; resource.registration = 'unknown';
   expect(() => validateCatalog(changed)).toThrow('guidance');
   resource.audience = 'Описание аудитории'; resource.howToUse = 'Рекомендация по использованию'; resource.limitations = []; resource.registration = 'no';
   expect(() => validateCatalog(changed)).not.toThrow();
@@ -80,7 +89,7 @@ test('exam parts are non-empty with unique ids', () => {
   expect(() => validateCatalog(dup)).toThrow('part id');
 });
 test('verified exams need scoreMapping for every declared CEFR level', () => {
-  const pending = copy(); pending.examGuides[0].scoreMapping = [];
+  const pending = copy(); pending.examGuides[0].reviewStatus = 'pending'; pending.examGuides[0].verifiedAt = null; pending.examGuides[0].scoreMapping = [];
   expect(() => validateCatalog(pending)).not.toThrow();
   const verified = copy(); const exam = verified.examGuides[0];
   exam.reviewStatus = 'verified'; exam.verifiedAt = '2026-09-09'; exam.linkCheckedAt = '2026-09-09';

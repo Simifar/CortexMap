@@ -10,5 +10,5 @@ export function MaterialDetails({ material }: { material: Resource | Textbook })
   </section>;
 }
 export function ReviewStatus({ item }: { item: { reviewStatus: 'pending' | 'verified'; verifiedAt: string | null; linkCheckedAt: string | null } }) {
-  return <p className="text-sm text-muted-foreground">{item.reviewStatus === 'verified' ? 'Данные сверены с официальными источниками: ' + item.verifiedAt + '.' : 'Данные ещё не сверены с официальными источниками.'}{item.linkCheckedAt ? ' Ссылка проверена: ' + item.linkCheckedAt + '.' : ''}</p>;
+  return <p className="text-sm text-muted-foreground">{item.reviewStatus === 'verified' ? 'Содержание проверено редакцией: ' + item.verifiedAt + '.' : 'Содержание ожидает редакционной проверки.'}{item.linkCheckedAt ? ' Официальная ссылка проверена: ' + item.linkCheckedAt + '.' : ''}</p>;
 }

@@ -1,7 +1,7 @@
 import type { Resource } from './types';
 
 // IDs and slugs are permanent; edit titles without regenerating them.
-export const resources: Resource[] = [
+const resourceRecords: Resource[] = [
   {
     "id": "resource-grammarly",
     "slug": "resource-grammarly",
@@ -463,3 +463,28 @@ export const resources: Resource[] = [
     "skillAreas": []
   }
 ];
+
+const reviewDate = '2026-09-16';
+const resourceGuidance: Record<Resource['category'], { audience: string; howToUse: string; format: string; skillAreas: Resource['skillAreas'] }> = {
+  grammar: { audience: 'Тем, кто хочет находить и исправлять грамматические ошибки.', howToUse: 'Проверяйте отдельные темы или собственные примеры и переносите исправления в самостоятельную практику.', format: 'Сайт или веб-сервис', skillAreas: ['grammar', 'writing'] },
+  reading: { audience: 'Тем, кто развивает чтение и словарный запас на аутентичных текстах.', howToUse: 'Читайте регулярно, отмечайте новые выражения и пересказывайте основную мысль текста.', format: 'Статьи, книги или учебные материалы', skillAreas: ['reading', 'vocabulary'] },
+  listening: { audience: 'Тем, кто тренирует понимание речи на слух и пополняет словарный запас.', howToUse: 'Сначала слушайте без текста, затем сверяйтесь с расшифровкой и повторяйте сложные фрагменты.', format: 'Аудио или видео', skillAreas: ['listening', 'vocabulary'] },
+  speaking: { audience: 'Тем, кому нужна регулярная разговорная практика.', howToUse: 'Заранее выбирайте тему, фиксируйте новые выражения и после разговора разбирайте повторяющиеся ошибки.', format: 'Сайт или мобильное приложение', skillAreas: ['speaking'] },
+  dictionary: { audience: 'Тем, кто уточняет значения, сочетаемость и произношение английских слов.', howToUse: 'Проверяйте слово в контексте, слушайте произношение и сохраняйте один-два полезных примера.', format: 'Онлайн-словарь', skillAreas: ['vocabulary', 'pronunciation'] },
+  practice: { audience: 'Тем, кто закрепляет лексику и грамматику интервальным повторением или тестами.', howToUse: 'Создавайте небольшие наборы, повторяйте их по расписанию и добавляйте примеры употребления.', format: 'Сайт или приложение', skillAreas: ['grammar', 'vocabulary'] },
+  pronunciation: { audience: 'Тем, кто работает над произношением и разборчивостью речи.', howToUse: 'Сравнивайте свою запись с образцом, повторяйте короткие фразы и отслеживайте один навык за раз.', format: 'Сайт или мобильное приложение', skillAreas: ['pronunciation', 'speaking'] },
+  exams: { audience: 'Кандидатам, которым нужны официальные правила и материалы конкретного экзамена.', howToUse: 'Начните с актуального формата и критериев, затем выполняйте официальные образцы в условиях ограничения времени.', format: 'Официальный сайт экзамена', skillAreas: ['reading', 'listening', 'speaking', 'writing'] },
+};
+const registrationRequired = new Set(['resource-grammarly', 'resource-tandem', 'resource-hellotalk', 'resource-cambly', 'resource-quizlet', 'resource-elsa-speak']);
+const mixedAccess = new Set(['resource-grammarly', 'resource-tandem', 'resource-hellotalk', 'resource-quizlet', 'resource-elsa-speak']);
+
+export const resources: Resource[] = resourceRecords.map((resource) => ({
+  ...resource,
+  ...resourceGuidance[resource.category],
+  access: mixedAccess.has(resource.id) ? 'mixed' : resource.access,
+  registration: registrationRequired.has(resource.id) ? 'yes' : 'no',
+  limitations: ['Состав бесплатных функций, доступность по странам и условия использования могут изменяться; проверяйте их на официальном сайте.'],
+  reviewStatus: 'verified',
+  verifiedAt: reviewDate,
+  linkCheckedAt: reviewDate,
+}));

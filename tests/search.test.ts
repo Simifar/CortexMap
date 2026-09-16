@@ -28,5 +28,5 @@ test('every topic search result targets an existing topic anchor', () => {
 test('exam search includes parts, organizations and score scales', () => {
   expect(searchCatalog({ q: 'Listening', type: 'exam' }).some(result => result.id === 'ielts')).toBe(true);
   expect(searchCatalog({ q: 'ETS', type: 'exam' }).some(result => result.id === 'toefl')).toBe(true);
-  expect(searchCatalog({ q: '120', type: 'exam' }).some(result => result.id === 'toefl')).toBe(true);
+  expect(searchCatalog({ q: 'сопоставимый', type: 'exam' }).some(result => result.id === 'toefl')).toBe(true);
 });
