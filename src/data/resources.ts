@@ -6,7 +6,7 @@ export const resources: Resource[] = [
     "id": "resource-grammarly",
     "slug": "resource-grammarly",
     "title": "Grammarly",
-    "description": "Автоматическая проверка грамматики и стиля. Помогает писать лучше каждый день.",
+    "description": "Сервис для автоматической проверки английского текста: грамматики, орфографии, пунктуации и стиля.",
     "cefrLevels": [],
     "tags": [
       "Грамматика"
@@ -29,7 +29,7 @@ export const resources: Resource[] = [
     "id": "resource-perfect-english-grammar",
     "slug": "resource-perfect-english-grammar",
     "title": "Perfect English Grammar",
-    "description": "Бесплатные уроки грамматики с упражнениями. Более 500 страниц материалов.",
+    "description": "Объяснения английской грамматики и упражнения по отдельным темам.",
     "cefrLevels": [],
     "tags": [
       "Грамматика"
@@ -52,7 +52,7 @@ export const resources: Resource[] = [
     "id": "resource-englishclub",
     "slug": "resource-englishclub",
     "title": "EnglishClub",
-    "description": "Комплексный ресурс: грамматика, лексика, произношение, тесты.",
+    "description": "Справочные материалы по грамматике, лексике и произношению, а также тесты и упражнения.",
     "cefrLevels": [],
     "tags": [
       "Грамматика"
@@ -75,7 +75,7 @@ export const resources: Resource[] = [
     "id": "resource-breaking-news-english",
     "slug": "resource-breaking-news-english",
     "title": "Breaking News English",
-    "description": "Уроки на основе свежих новостей. 7 уровней сложности, аудио, упражнения.",
+    "description": "Уроки на основе новостных текстов с аудиозаписями и упражнениями нескольких уровней сложности.",
     "cefrLevels": [],
     "tags": [
       "Чтение"
@@ -98,7 +98,7 @@ export const resources: Resource[] = [
     "id": "resource-bbc-learning-english",
     "slug": "resource-bbc-learning-english",
     "title": "BBC Learning English",
-    "description": "Качественные материалы от BBC: видео, аудио, статьи, квизы, подкасты.",
+    "description": "Учебные программы BBC: видео, подкасты, статьи, объяснения лексики и задания для самопроверки.",
     "cefrLevels": [],
     "tags": [
       "Чтение"
@@ -121,7 +121,7 @@ export const resources: Resource[] = [
     "id": "resource-project-gutenberg",
     "slug": "resource-project-gutenberg",
     "title": "Project Gutenberg",
-    "description": "Более 70 000 бесплатных книг на английском. Классика литературы для чтения.",
+    "description": "Электронная библиотека произведений, перешедших в общественное достояние, в том числе книг на английском языке.",
     "cefrLevels": [],
     "tags": [
       "Чтение"
@@ -144,10 +144,10 @@ export const resources: Resource[] = [
     "id": "resource-ted-talks",
     "slug": "resource-ted-talks",
     "title": "TED Talks",
-    "description": "Вдохновляющие доклады с субтитрами. Огромный выбор тем и спикеров.",
+    "description": "Записи выступлений на разные темы с субтитрами и текстовыми расшифровками.",
     "cefrLevels": [],
     "tags": [
-      "Слушание"
+      "Аудирование"
     ],
     "access": "free",
     "officialUrl": "https://www.ted.com",
@@ -167,10 +167,10 @@ export const resources: Resource[] = [
     "id": "resource-bbc-6-minute-english",
     "slug": "resource-bbc-6-minute-english",
     "title": "BBC 6 Minute English",
-    "description": "Короткие подкасты на разные темы. Идеально для ежедневного прослушивания.",
+    "description": "Короткие аудиовыпуски BBC с расшифровкой и разбором употреблённой лексики.",
     "cefrLevels": [],
     "tags": [
-      "Слушание"
+      "Аудирование"
     ],
     "access": "free",
     "officialUrl": "https://www.bbc.co.uk/learningenglish/english/features/6-minute-english",
@@ -190,10 +190,10 @@ export const resources: Resource[] = [
     "id": "resource-youtube-english-with-lucy-rachel-s-english",
     "slug": "resource-youtube-english-with-lucy-rachel-s-english",
     "title": "YouTube (English with Lucy / Rachel's English)",
-    "description": "Бесплатные видеоуроки от лучших преподавателей. Произношение, грамматика, лексика.",
+    "description": "Видеоуроки по произношению, грамматике и лексике на авторских каналах преподавателей английского.",
     "cefrLevels": [],
     "tags": [
-      "Слушание"
+      "Аудирование"
     ],
     "access": "free",
     "officialUrl": "https://www.youtube.com",
@@ -213,10 +213,10 @@ export const resources: Resource[] = [
     "id": "resource-tandem",
     "slug": "resource-tandem",
     "title": "Tandem",
-    "description": "Языковой обмен с носителями. Общайтесь в чате или по видеосвязи.",
+    "description": "Сервис языкового обмена с текстовыми сообщениями, аудиозвонками и видеосвязью.",
     "cefrLevels": [],
     "tags": [
-      "Общение"
+      "Говорение"
     ],
     "access": "free",
     "officialUrl": "https://www.tandem.net",
@@ -236,10 +236,10 @@ export const resources: Resource[] = [
     "id": "resource-hellotalk",
     "slug": "resource-hellotalk",
     "title": "HelloTalk",
-    "description": "Приложение для языкового обмена. Исправления от носителей в реальном времени.",
+    "description": "Приложение для языкового обмена с сообщениями, голосовыми комнатами и исправлениями текстов участниками сообщества.",
     "cefrLevels": [],
     "tags": [
-      "Общение"
+      "Говорение"
     ],
     "access": "free",
     "officialUrl": "https://www.hellotalk.com",
@@ -259,10 +259,10 @@ export const resources: Resource[] = [
     "id": "resource-cambly",
     "slug": "resource-cambly",
     "title": "Cambly",
-    "description": "Уроки с профессиональными преподавателями-носителями 24/7.",
+    "description": "Платформа индивидуальных онлайн-занятий английским с преподавателями.",
     "cefrLevels": [],
     "tags": [
-      "Общение"
+      "Говорение"
     ],
     "access": "paid",
     "officialUrl": "https://www.cambly.com",
@@ -282,7 +282,7 @@ export const resources: Resource[] = [
     "id": "resource-cambridge-dictionary",
     "slug": "resource-cambridge-dictionary",
     "title": "Cambridge Dictionary",
-    "description": "Лучший словарь для изучающих английский. Примеры, коллокации, произношение.",
+    "description": "Английский словарь с примерами употребления, транскрипцией, аудиопроизношением и устойчивыми сочетаниями.",
     "cefrLevels": [],
     "tags": [
       "Словари"
@@ -305,7 +305,7 @@ export const resources: Resource[] = [
     "id": "resource-thesaurus-com",
     "slug": "resource-thesaurus-com",
     "title": "Thesaurus.com",
-    "description": "Словарь синонимов. Расширяйте словарный запас, находя подходящие слова.",
+    "description": "Словарь английских синонимов и антонимов с группировкой слов по значениям.",
     "cefrLevels": [],
     "tags": [
       "Словари"
@@ -328,7 +328,7 @@ export const resources: Resource[] = [
     "id": "resource-wordreference",
     "slug": "resource-wordreference",
     "title": "WordReference",
-    "description": "Отличный двуязычный словарь с форумом для сложных вопросов.",
+    "description": "Двуязычные словари, примеры употребления и форум с обсуждением переводов и языковых нюансов.",
     "cefrLevels": [],
     "tags": [
       "Словари"
@@ -351,10 +351,10 @@ export const resources: Resource[] = [
     "id": "resource-quizlet",
     "slug": "resource-quizlet",
     "title": "Quizlet",
-    "description": "Карточки для запоминания слов. Создавайте свои колоды или используйте готовые.",
+    "description": "Сервис учебных карточек: можно создавать собственные наборы или использовать опубликованные другими пользователями.",
     "cefrLevels": [],
     "tags": [
-      "Тренировки"
+      "Тренировка"
     ],
     "access": "free",
     "officialUrl": "https://quizlet.com",
@@ -374,10 +374,10 @@ export const resources: Resource[] = [
     "id": "resource-anki",
     "slug": "resource-anki",
     "title": "Anki",
-    "description": "Интервальное повторение — научный метод запоминания. Бесплатно на ПК.",
+    "description": "Программа для запоминания материала с помощью карточек и интервального повторения.",
     "cefrLevels": [],
     "tags": [
-      "Тренировки"
+      "Тренировка"
     ],
     "access": "free",
     "officialUrl": "https://apps.ankiweb.net",
@@ -397,7 +397,7 @@ export const resources: Resource[] = [
     "id": "resource-elsa-speak",
     "slug": "resource-elsa-speak",
     "title": "Elsa Speak",
-    "description": "ИИ-приложение для тренировки произношения. Распознаёт ошибки и помогает исправить.",
+    "description": "Приложение для тренировки английского произношения с автоматическим анализом записанной речи.",
     "cefrLevels": [],
     "tags": [
       "Произношение"
@@ -420,7 +420,7 @@ export const resources: Resource[] = [
     "id": "resource-ielts-org",
     "slug": "resource-ielts-org",
     "title": "IELTS.org",
-    "description": "Официальный сайт IELTS. Бесплатные образцы тестов и советы по подготовке.",
+    "description": "Официальная информация об IELTS: формат, результаты, регистрация и материалы для знакомства с заданиями.",
     "cefrLevels": [],
     "tags": [
       "Экзамены"
@@ -443,7 +443,7 @@ export const resources: Resource[] = [
     "id": "resource-cambridge-english",
     "slug": "resource-cambridge-english",
     "title": "Cambridge English",
-    "description": "Официальный сайт кембриджских экзаменов. Бесплатные материалы для подготовки.",
+    "description": "Официальная информация об экзаменах Cambridge English, их формате, уровнях и материалах для подготовки.",
     "cefrLevels": [],
     "tags": [
       "Экзамены"

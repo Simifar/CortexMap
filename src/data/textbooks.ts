@@ -6,7 +6,7 @@ export const textbooks: Textbook[] = [
     "id": "a1-english-file-beginner",
     "slug": "a1-english-file-beginner",
     "title": "English File Beginner",
-    "description": "Идеальный старт: коммуникативный подход с множеством аудио и видео материалов.",
+    "description": "Начальный курс общего английского с заданиями на грамматику, лексику, аудирование и говорение.",
     "cefrLevels": [
       "A1"
     ],
@@ -43,7 +43,7 @@ export const textbooks: Textbook[] = [
     "id": "a1-face2face-elementary",
     "slug": "a1-face2face-elementary",
     "title": "Face2Face Elementary",
-    "description": "Пошаговая программа с фокусом на разговорную практику.",
+    "description": "Курс общего английского для начального уровня с акцентом на диалоги и разговорную практику.",
     "cefrLevels": [
       "A1"
     ],
@@ -78,7 +78,7 @@ export const textbooks: Textbook[] = [
     "id": "a1-round-up-1-student-s-book",
     "slug": "a1-round-up-1-student-s-book",
     "title": "Round-Up 1 (Student's Book)",
-    "description": "Грамматика в игровой форме с красочными иллюстрациями. Отлично для самостоятельного изучения.",
+    "description": "Иллюстрированный сборник объяснений и упражнений по базовой английской грамматике.",
     "cefrLevels": [
       "A1"
     ],
@@ -112,7 +112,7 @@ export const textbooks: Textbook[] = [
     "id": "a1-streamline-english-departures",
     "slug": "a1-streamline-english-departures",
     "title": "Streamline English Departures",
-    "description": "Классический курс для начинающих с упором на повседневные ситуации.",
+    "description": "Курс для начинающих, построенный вокруг лексики и диалогов из повседневных ситуаций.",
     "cefrLevels": [
       "A1"
     ],
@@ -147,7 +147,7 @@ export const textbooks: Textbook[] = [
     "id": "a2-english-file-pre-intermediate",
     "slug": "a2-english-file-pre-intermediate",
     "title": "English File Pre-Intermediate",
-    "description": "Продолжение популярной серии. Отличный баланс грамматики, лексики и общения.",
+    "description": "Курс общего английского с последовательной работой над грамматикой, лексикой и устной речью.",
     "cefrLevels": [
       "A2"
     ],
@@ -182,14 +182,14 @@ export const textbooks: Textbook[] = [
     "id": "a2-english-grammar-in-use-red-essential",
     "slug": "a2-english-grammar-in-use-red-essential",
     "title": "English Grammar in Use (Red) — Essential",
-    "description": "Легендарный учебник грамматики. Теория слева — упражнения справа. Must-have!",
+    "description": "Справочник по базовой и средней грамматике: краткое объяснение темы сопровождается упражнениями.",
     "cefrLevels": [
       "A2"
     ],
     "tags": [
       "Грамматика",
       "Самостоятельное",
-      "Must-have"
+      "Справочник"
     ],
     "access": "paid",
     "officialUrl": "https://www.cambridge.org/englishgrammarinuse",
@@ -204,7 +204,7 @@ export const textbooks: Textbook[] = [
     "purpose": [
       "Грамматика",
       "Самостоятельное",
-      "Must-have"
+      "Справочник"
     ],
     "reviewStatus": "pending",
     "audience": null,
@@ -218,7 +218,7 @@ export const textbooks: Textbook[] = [
     "id": "a2-speakout-pre-intermediate",
     "slug": "a2-speakout-pre-intermediate",
     "title": "Speakout Pre-Intermediate",
-    "description": "Богатый медиа-контент с видео из BBC. Отличная разговорная практика.",
+    "description": "Курс общего английского с видеоматериалами BBC и заданиями на восприятие речи и обсуждение.",
     "cefrLevels": [
       "A2"
     ],
@@ -253,13 +253,13 @@ export const textbooks: Textbook[] = [
     "id": "b1-english-grammar-in-use-blue",
     "slug": "b1-english-grammar-in-use-blue",
     "title": "English Grammar in Use (Blue)",
-    "description": "Средний уровень легендарной серии. Незаменимый справочник для B1-B2.",
+    "description": "Справочник по грамматике уровней B1–B2 с краткими объяснениями и упражнениями для самопроверки.",
     "cefrLevels": [
       "B1"
     ],
     "tags": [
       "Грамматика",
-      "Must-have",
+      "Справочник",
       "Самостоятельное"
     ],
     "access": "paid",
@@ -274,7 +274,7 @@ export const textbooks: Textbook[] = [
     "format": "Учебник или справочник",
     "purpose": [
       "Грамматика",
-      "Must-have",
+      "Справочник",
       "Самостоятельное"
     ],
     "reviewStatus": "pending",
@@ -289,7 +289,7 @@ export const textbooks: Textbook[] = [
     "id": "b1-english-file-intermediate",
     "slug": "b1-english-file-intermediate",
     "title": "English File Intermediate",
-    "description": "Глубокое погружение в темы с яркими диалогами и актуальной лексикой.",
+    "description": "Курс уровня B1 с тематической лексикой, диалогами и заданиями на основные языковые навыки.",
     "cefrLevels": [
       "B1"
     ],
@@ -324,7 +324,7 @@ export const textbooks: Textbook[] = [
     "id": "b1-vocabulary-in-use-intermediate",
     "slug": "b1-vocabulary-in-use-intermediate",
     "title": "Vocabulary in Use Intermediate",
-    "description": "Системная работа над словарным запасом по темам.",
+    "description": "Тематические разделы по лексике уровня B1 с примерами употребления и упражнениями.",
     "cefrLevels": [
       "B1"
     ],
@@ -358,7 +358,7 @@ export const textbooks: Textbook[] = [
     "id": "b1-outcomes-intermediate",
     "slug": "b1-outcomes-intermediate",
     "title": "Outcomes Intermediate",
-    "description": "Лексический подход: учите язык в контексте реальных ситуаций.",
+    "description": "Курс общего английского, в котором лексика и устойчивые сочетания изучаются в контексте ситуаций.",
     "cefrLevels": [
       "B1"
     ],
@@ -393,13 +393,13 @@ export const textbooks: Textbook[] = [
     "id": "b2-advanced-grammar-in-use",
     "slug": "b2-advanced-grammar-in-use",
     "title": "Advanced Grammar in Use",
-    "description": "Продвинутая грамматика для B2-C2. Детальное объяснение тонких нюансов.",
+    "description": "Справочник по грамматике уровней B2–C2 с подробными объяснениями и упражнениями.",
     "cefrLevels": [
       "B2"
     ],
     "tags": [
       "Грамматика",
-      "Must-have"
+      "Для самостоятельной работы"
     ],
     "access": "paid",
     "officialUrl": "https://www.cambridge.org/advancedgrammarinuse",
@@ -413,7 +413,7 @@ export const textbooks: Textbook[] = [
     "format": "Учебник или справочник",
     "purpose": [
       "Грамматика",
-      "Must-have"
+      "Для самостоятельной работы"
     ],
     "reviewStatus": "pending",
     "audience": null,
@@ -427,7 +427,7 @@ export const textbooks: Textbook[] = [
     "id": "b2-english-collocations-in-use-intermediate",
     "slug": "b2-english-collocations-in-use-intermediate",
     "title": "English Collocations in Use (Intermediate)",
-    "description": "Лучший учебник по словосочетаниям. Делает речь естественной.",
+    "description": "Учебное пособие по английским словосочетаниям с примерами употребления и упражнениями.",
     "cefrLevels": [
       "B2"
     ],
@@ -462,7 +462,7 @@ export const textbooks: Textbook[] = [
     "id": "b2-ielts-trainer-b2",
     "slug": "b2-ielts-trainer-b2",
     "title": "IELTS Trainer (B2)",
-    "description": "Шесть полноценных тестов с практическими советами для подготовки к IELTS.",
+    "description": "Сборник из шести тренировочных вариантов IELTS с пояснениями к формату заданий.",
     "cefrLevels": [
       "B2"
     ],
@@ -499,7 +499,7 @@ export const textbooks: Textbook[] = [
     "id": "b2-english-pronunciation-in-use-intermediate",
     "slug": "b2-english-pronunciation-in-use-intermediate",
     "title": "English Pronunciation in Use (Intermediate)",
-    "description": "Системная работа над произношением: звуки, ударение, интонация.",
+    "description": "Пособие по английскому произношению: отдельные звуки, словесное ударение и интонация.",
     "cefrLevels": [
       "B2"
     ],
@@ -533,13 +533,13 @@ export const textbooks: Textbook[] = [
     "id": "c1-advanced-grammar-in-use-book-with-answers",
     "slug": "c1-advanced-grammar-in-use-book-with-answers",
     "title": "Advanced Grammar in Use (Book with Answers)",
-    "description": "Полный справочник продвинутой грамматики. Более 100 юнитов с упражнениями.",
+    "description": "Справочник по продвинутой грамматике с тематическими разделами и упражнениями.",
     "cefrLevels": [
       "C1"
     ],
     "tags": [
       "Грамматика",
-      "Must-have",
+      "Для самостоятельной работы",
       "C1-C2"
     ],
     "access": "paid",
@@ -554,7 +554,7 @@ export const textbooks: Textbook[] = [
     "format": "Учебник или справочник",
     "purpose": [
       "Грамматика",
-      "Must-have",
+      "Для самостоятельной работы",
       "C1-C2"
     ],
     "reviewStatus": "pending",
@@ -569,7 +569,7 @@ export const textbooks: Textbook[] = [
     "id": "c1-english-idioms-in-use-advanced",
     "slug": "c1-english-idioms-in-use-advanced",
     "title": "English Idioms in Use (Advanced)",
-    "description": "Более 1000 идиом в контексте. Для естественной речи на высоком уровне.",
+    "description": "Пособие по английским идиомам с примерами употребления в контексте и упражнениями.",
     "cefrLevels": [
       "C1"
     ],
@@ -604,7 +604,7 @@ export const textbooks: Textbook[] = [
     "id": "c1-vocabulary-in-use-advanced",
     "slug": "c1-vocabulary-in-use-advanced",
     "title": "Vocabulary in Use (Advanced)",
-    "description": "Академическая и профессиональная лексика для продвинутых.",
+    "description": "Пособие по академической и профессиональной лексике для уровней C1–C2.",
     "cefrLevels": [
       "C1"
     ],
@@ -639,7 +639,7 @@ export const textbooks: Textbook[] = [
     "id": "c1-objective-ielts-advanced",
     "slug": "c1-objective-ielts-advanced",
     "title": "Objective IELTS Advanced",
-    "description": "Комплексная подготовка к IELTS для целевого балла 7.0–8.0.",
+    "description": "Пособие для подготовки к IELTS с заданиями по всем частям экзамена и ориентацией на высокие баллы.",
     "cefrLevels": [
       "C1"
     ],
@@ -676,7 +676,7 @@ export const textbooks: Textbook[] = [
     "id": "c2-cambridge-english-proficiency-cpe-masterclass",
     "slug": "c2-cambridge-english-proficiency-cpe-masterclass",
     "title": "Cambridge English Proficiency (CPE) Masterclass",
-    "description": "Полная подготовка к самому сложному кембриджскому экзамену.",
+    "description": "Курс подготовки к C2 Proficiency с практикой экзаменационных заданий и языкового материала уровня C2.",
     "cefrLevels": [
       "C2"
     ],
@@ -713,14 +713,14 @@ export const textbooks: Textbook[] = [
     "id": "c2-practical-english-usage",
     "slug": "c2-practical-english-usage",
     "title": "Practical English Usage",
-    "description": "Библия английского языка. Энциклопедический справочник по всем тонкостям.",
+    "description": "Справочник по сложным вопросам английской грамматики, лексики и словоупотребления.",
     "cefrLevels": [
       "C2"
     ],
     "tags": [
       "Справочник",
-      "Must-have",
-      "Библия"
+      "Словоупотребление",
+      "Грамматика"
     ],
     "access": "paid",
     "officialUrl": "https://www.oup.com/elt/catalogue/isbn/9780194202432",
@@ -734,8 +734,8 @@ export const textbooks: Textbook[] = [
     "format": "Учебник или справочник",
     "purpose": [
       "Справочник",
-      "Must-have",
-      "Библия"
+      "Словоупотребление",
+      "Грамматика"
     ],
     "reviewStatus": "pending",
     "audience": null,
@@ -749,7 +749,7 @@ export const textbooks: Textbook[] = [
     "id": "c2-the-cambridge-grammar-of-the-english-language",
     "slug": "c2-the-cambridge-grammar-of-the-english-language",
     "title": "The Cambridge Grammar of the English Language",
-    "description": "Академическая грамматика для лингвистов и филологов. Максимальная глубина.",
+    "description": "Подробное описание грамматики современного английского языка для углублённого и академического изучения.",
     "cefrLevels": [
       "C2"
     ],
