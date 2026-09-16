@@ -13,6 +13,7 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   compress: true,
   poweredByHeader: false,
+  turbopack: { root: process.cwd() },
   experimental: { optimizePackageImports: ['lucide-react'] },
   images: { unoptimized: staticExport, formats: ['image/avif', 'image/webp'], qualities: [80] },
   ...(staticExport ? {} : { async headers() {
