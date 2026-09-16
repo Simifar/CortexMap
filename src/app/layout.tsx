@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import { withBasePath } from '@/lib/paths';
-import { siteDescription, siteName, siteUrl } from '@/lib/site';
+import { absoluteSiteUrl, siteDescription, siteName, siteUrl } from '@/lib/site';
 
 const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'], display: 'swap', preload: true });
 const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin'], display: 'swap', preload: false });
@@ -13,8 +13,8 @@ export const metadata: Metadata = {
   description: siteDescription,
   icons: { icon: withBasePath('/logo.svg'), shortcut: withBasePath('/logo.svg'), apple: withBasePath('/logo.svg') },
   alternates: { canonical: '/' },
-  openGraph: { type: 'website', locale: 'ru_RU', siteName, title: siteName, description: siteDescription, url: '/' },
-  twitter: { card: 'summary_large_image', title: siteName, description: siteDescription },
+  openGraph: { type: 'website', locale: 'ru_RU', siteName, title: siteName, description: siteDescription, url: '/', images: [absoluteSiteUrl('opengraph-image.png')] },
+  twitter: { card: 'summary_large_image', title: siteName, description: siteDescription, images: [absoluteSiteUrl('opengraph-image.png')] },
 };
 
 export const viewport: Viewport = {

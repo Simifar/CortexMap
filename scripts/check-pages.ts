@@ -22,7 +22,7 @@ for (const record of baseline) if (!await existsRoute(basePath+record.url+'/')) 
 for (const path of ['/search/','/resources/','/textbooks/','/favorites/','/404.html','/robots.txt','/sitemap.xml','/.nojekyll']) if (!await existsRoute(basePath+path)) errors.push('Missing '+path);
 for (const file of files.filter(file=>file.endsWith('.html'))) {
   const html=await Bun.file(file).text();
-  for (const match of html.matchAll(/(?:href|src|action)="([^"<>]+)"/g)) {
+  for (const match of html.matchAll(/(?:href|src|action|content)="([^"<>]+)"/g)) {
     const target=match[1].replaceAll('&amp;','&');
     if (!target.startsWith('/') && !target.startsWith(origin+'/')) continue;
     const url = new URL(target,siteUrl);

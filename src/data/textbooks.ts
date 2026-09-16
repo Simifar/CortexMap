@@ -87,8 +87,8 @@ export const textbooks: Textbook[] = [
       "Самостоятельное"
     ],
     "access": "paid",
-    "officialUrl": "https://www.expresspublishing.co.uk/roundup",
-    "linkCheckedAt": null,
+    "officialUrl": "https://www.expresspublishing.co.uk/en-gr/new-round-up",
+    "linkCheckedAt": "2026-09-16",
     "verifiedAt": null,
     "authors": [
       "Virginia Evans"
