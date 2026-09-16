@@ -23,11 +23,47 @@ export const examGuides: ExamGuide[] = [
     "officialUrl": "https://ielts.org/",
     "linkCheckedAt": null,
     "organization": "British Council, IDP Education и Cambridge University Press & Assessment",
+    "familySlug": null,
+    "levelStatus": "single",
+    "familyMembers": null,
+    "duration": "Продолжительность уточняется по официальному регламенту",
+    "scoreScale": null,
+    "scoreMapping": [],
+    "validity": null,
+    "registration": null,
     "parts": [
-      "Listening",
-      "Reading",
-      "Writing",
-      "Speaking"
+      {
+        "id": "listening",
+        "title": "Listening",
+        "duration": null,
+        "questionCount": null,
+        "taskTypes": [],
+        "scoreShare": null
+      },
+      {
+        "id": "reading",
+        "title": "Reading",
+        "duration": null,
+        "questionCount": null,
+        "taskTypes": [],
+        "scoreShare": null
+      },
+      {
+        "id": "writing",
+        "title": "Writing",
+        "duration": null,
+        "questionCount": null,
+        "taskTypes": [],
+        "scoreShare": null
+      },
+      {
+        "id": "speaking",
+        "title": "Speaking",
+        "duration": null,
+        "questionCount": null,
+        "taskTypes": [],
+        "scoreShare": null
+      }
     ],
     "preparationStrategy": [
       {
@@ -75,11 +111,47 @@ export const examGuides: ExamGuide[] = [
     "officialUrl": "https://www.ets.org/toefl.html",
     "linkCheckedAt": null,
     "organization": "ETS",
+    "familySlug": null,
+    "levelStatus": "single",
+    "familyMembers": null,
+    "duration": "Продолжительность уточняется по официальному регламенту",
+    "scoreScale": null,
+    "scoreMapping": [],
+    "validity": null,
+    "registration": null,
     "parts": [
-      "Reading",
-      "Listening",
-      "Speaking",
-      "Writing"
+      {
+        "id": "reading",
+        "title": "Reading",
+        "duration": null,
+        "questionCount": null,
+        "taskTypes": [],
+        "scoreShare": null
+      },
+      {
+        "id": "listening",
+        "title": "Listening",
+        "duration": null,
+        "questionCount": null,
+        "taskTypes": [],
+        "scoreShare": null
+      },
+      {
+        "id": "speaking",
+        "title": "Speaking",
+        "duration": null,
+        "questionCount": null,
+        "taskTypes": [],
+        "scoreShare": null
+      },
+      {
+        "id": "writing",
+        "title": "Writing",
+        "duration": null,
+        "questionCount": null,
+        "taskTypes": [],
+        "scoreShare": null
+      }
     ],
     "preparationStrategy": [
       {
@@ -128,11 +200,47 @@ export const examGuides: ExamGuide[] = [
     "officialUrl": "https://www.cambridgeenglish.org/exams-and-tests/",
     "linkCheckedAt": null,
     "organization": "Cambridge University Press & Assessment",
+    "familySlug": null,
+    "levelStatus": "single",
+    "familyMembers": null,
+    "duration": "Продолжительность уточняется по официальному регламенту",
+    "scoreScale": null,
+    "scoreMapping": [],
+    "validity": null,
+    "registration": null,
     "parts": [
-      "Reading and Use of English",
-      "Writing",
-      "Listening",
-      "Speaking"
+      {
+        "id": "reading-and-use-of-english",
+        "title": "Reading and Use of English",
+        "duration": null,
+        "questionCount": null,
+        "taskTypes": [],
+        "scoreShare": null
+      },
+      {
+        "id": "writing",
+        "title": "Writing",
+        "duration": null,
+        "questionCount": null,
+        "taskTypes": [],
+        "scoreShare": null
+      },
+      {
+        "id": "listening",
+        "title": "Listening",
+        "duration": null,
+        "questionCount": null,
+        "taskTypes": [],
+        "scoreShare": null
+      },
+      {
+        "id": "speaking",
+        "title": "Speaking",
+        "duration": null,
+        "questionCount": null,
+        "taskTypes": [],
+        "scoreShare": null
+      }
     ],
     "preparationStrategy": [
       {

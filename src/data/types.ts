@@ -48,8 +48,34 @@ export const textbookSchema = commonSchema.extend({
   format: text, purpose: z.array(text).nonempty(),
   edition: text.nullable(), hasAnswers: z.enum(['yes', 'no', 'unknown']),
 });
+const examPartSchema = z.object({
+  id, title: text,
+  duration: text.nullable(),
+  questionCount: z.number().int().positive().nullable(),
+  taskTypes: z.array(text),
+  scoreShare: z.number().min(0).max(100).nullable(),
+});
+const scoreScaleSchema = z.object({
+  min: z.number(), max: z.number(), goodFrom: z.number().optional(),
+  unit: text, note: text.nullable(),
+});
+const scoreMappingSchema = z.object({ cefr: z.enum(cefrLevels), score: text });
+const examRegistrationSchema = z.object({
+  costNote: text.nullable(), frequency: text.nullable(),
+  format: text.nullable(), website: officialUrlSchema,
+});
+const familyMemberSchema = z.object({ id, slug: id, title: text, cefrLevels: levelList });
 export const examGuideSchema = commonSchema.extend({
-  officialName: text, organization: text, parts: z.array(text).nonempty(),
+  officialName: text, organization: text,
+  familySlug: z.string().regex(/^[a-z0-9-]+$/).nullable(),
+  levelStatus: z.enum(['single', 'family']),
+  familyMembers: z.array(familyMemberSchema).nullable(),
+  duration: text,
+  scoreScale: scoreScaleSchema.nullable(),
+  scoreMapping: z.array(scoreMappingSchema),
+  validity: text.nullable(),
+  registration: examRegistrationSchema.nullable(),
+  parts: z.array(examPartSchema).nonempty(),
   preparationStrategy: z.array(z.object({ phase: text, focus: text })).nonempty(),
   officialMaterials: z.array(z.object({ title: text, url: officialUrlSchema })).nonempty(),
 });

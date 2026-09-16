@@ -29,6 +29,17 @@ export function validateCatalog(catalog: CatalogData) {
   for (const resource of resources) {
     if ((resource.levelStatus === 'assessed') !== (resource.cefrLevels.length > 0)) throw new Error(`${resource.id}: inconsistent CEFR assessment`);
   }
+  for (const exam of examGuides) {
+    if (exam.levelStatus === 'family' && (!exam.familyMembers || exam.familyMembers.length === 0)) throw new Error(`${exam.id}: family exam needs non-empty familyMembers`);
+    if (exam.levelStatus === 'single' && exam.familyMembers !== null) throw new Error(`${exam.id}: single exam must have null familyMembers`);
+    if (exam.parts.length === 0) throw new Error(`${exam.id}: exam parts must not be empty`);
+    const partIds = exam.parts.map(part => part.id);
+    if (new Set(partIds).size !== partIds.length) throw new Error(`${exam.id}: duplicate exam part id`);
+    if (exam.reviewStatus === 'verified') {
+      const mapped = new Set(exam.scoreMapping.map(entry => entry.cefr));
+      for (const level of exam.cefrLevels) if (!mapped.has(level)) throw new Error(`${exam.id}: verified exam scoreMapping must cover ${level}`);
+    }
+  }
   for (const item of [...textbooks, ...resources]) {
     if (item.reviewStatus === 'verified' && (!item.audience || !item.howToUse || item.limitations === null || item.registration === 'unknown')) throw new Error(`${item.id}: verified material needs guidance and access details`);
   }

@@ -63,3 +63,33 @@ test('verified records need guidance, dated review and explicit access details',
   expect(() => validateCatalog(changed)).not.toThrow();
   resource.verifiedAt = '2099-01-01'; expect(() => validateCatalog(changed)).toThrow('future');
 });
+test('exam family status matches familyMembers', () => {
+  const single = copy(); single.examGuides[0].familyMembers = [{ id: 'member', slug: 'member', title: 'Участник', cefrLevels: ['B2'] }];
+  expect(() => validateCatalog(single)).toThrow('familyMembers');
+  const family = copy(); family.examGuides[0].levelStatus = 'family'; family.examGuides[0].familyMembers = null;
+  expect(() => validateCatalog(family)).toThrow('familyMembers');
+  const empty = copy(); empty.examGuides[0].levelStatus = 'family'; empty.examGuides[0].familyMembers = [];
+  expect(() => validateCatalog(empty)).toThrow('familyMembers');
+  const valid = copy(); valid.examGuides[0].levelStatus = 'family'; valid.examGuides[0].familyMembers = [{ id: 'member', slug: 'member', title: 'Участник', cefrLevels: ['B2'] }];
+  expect(() => validateCatalog(valid)).not.toThrow();
+});
+test('exam parts are non-empty with unique ids', () => {
+  const empty = copy(); empty.examGuides[0].parts = [];
+  expect(() => validateCatalog(empty)).toThrow();
+  const dup = copy(); dup.examGuides[0].parts[1].id = dup.examGuides[0].parts[0].id;
+  expect(() => validateCatalog(dup)).toThrow('part id');
+});
+test('verified exams need scoreMapping for every declared CEFR level', () => {
+  const pending = copy(); pending.examGuides[0].scoreMapping = [];
+  expect(() => validateCatalog(pending)).not.toThrow();
+  const verified = copy(); const exam = verified.examGuides[0];
+  exam.reviewStatus = 'verified'; exam.verifiedAt = '2026-09-09'; exam.linkCheckedAt = '2026-09-09';
+  expect(() => validateCatalog(verified)).toThrow('scoreMapping');
+  exam.scoreMapping = exam.cefrLevels.map((cefr) => ({ cefr, score: 'см. шкалу' }));
+  expect(() => validateCatalog(verified)).not.toThrow();
+});
+test('exam registration website must be an official URL', () => {
+  const changed = copy();
+  changed.examGuides[0].registration = { costNote: null, frequency: null, format: null, website: 'javascript:alert(1)' };
+  expect(() => validateCatalog(changed)).toThrow();
+});
