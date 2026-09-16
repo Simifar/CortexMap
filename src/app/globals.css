@@ -74,7 +74,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply min-w-0 max-w-full bg-background text-foreground antialiased;
+    @apply min-w-0 max-w-full overflow-x-clip bg-background text-foreground antialiased;
   }
   main { @apply min-w-0 max-w-full; }
   input, select, textarea { font-size: 16px; }
@@ -83,8 +83,7 @@
 }
 
 @media (max-width: 639px) {
-  main * { min-width: 0; }
-  main :is(h1, h2, h3, p, a, span) { overflow-wrap: anywhere; }
+  main :is(h1, h2, h3, p) { overflow-wrap: anywhere; }
 }
 
 @media print {
