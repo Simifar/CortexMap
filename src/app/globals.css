@@ -69,7 +69,7 @@
 @layer base {
   html {
     @apply max-w-full scroll-smooth;
-    scroll-padding-top: 7.5rem;
+    scroll-padding-top: 5rem;
   }
   * {
     @apply border-border outline-ring/50;
