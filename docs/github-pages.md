@@ -4,7 +4,7 @@
 
 ## Первый запуск
 
-1. Создайте на GitHub пустой репозиторий, например EnglishPath. Для Pages на GitHub Free нужен публичный репозиторий. Не добавляйте через интерфейс README или .gitignore: они уже есть в проекте.
+1. Создайте на GitHub пустой репозиторий, например CortexMap. Для Pages на GitHub Free нужен публичный репозиторий. Не добавляйте через интерфейс README или .gitignore: они уже есть в проекте.
 2. В локальной папке уже инициализирована ветка main. Проверьте git status и список файлов, которые будут отправлены. .env, сборочные результаты и зависимости исключены через .gitignore.
 3. Создайте первый коммит и подключите ваш адрес репозитория:
 
@@ -42,12 +42,12 @@ bun test
 bunx tsc --noEmit
 bun run lint
 bun run validate-content
-bun run build:pages --base-path /EnglishPath --site-url https://example.github.io/EnglishPath/
+bun run build:pages --base-path /CortexMap --site-url https://example.github.io/CortexMap/
 bun run check:pages
 bun run preview:pages
 ```
 
-После preview откройте http://127.0.0.1:4173/EnglishPath/. Проверьте поиск с главной, пагинацию и перезагрузку результатов, фильтры каталогов, избранное и прямые ссылки на материалы. Остановите preview перед сборкой с другим base path.
+После preview откройте http://127.0.0.1:4173/CortexMap/. Проверьте поиск с главной, пагинацию и перезагрузку результатов, фильтры каталогов, избранное и прямые ссылки на материалы. Остановите preview перед сборкой с другим base path.
 
 Для проверки корневого размещения в PowerShell:
 

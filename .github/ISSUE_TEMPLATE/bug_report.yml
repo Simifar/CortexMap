@@ -24,7 +24,7 @@ body:
     id: url
     attributes:
       label: Адрес страницы
-      placeholder: https://simifar.github.io/EnglishPath/...
+      placeholder: https://simifar.github.io/CortexMap/...
   - type: input
     id: environment
     attributes:

@@ -7,24 +7,24 @@ describe('favorite plan export', () => {
       { title: 'B1: Intermediate', href: '/plans/b1', type: 'Уровень CEFR', meta: 'B1' },
       { title: 'BBC Learning English', href: '/resources/bbc', type: 'Ресурс', meta: 'Аудирование' },
       { title: 'English Grammar in Use', href: '/textbooks/english-grammar-in-use', type: 'Учебник', meta: 'B1–B2' },
-    ], (href) => `https://example.com/EnglishPath${href}`, 'https://example.com/EnglishPath/');
+    ], (href) => `https://example.com/CortexMap${href}`, 'https://example.com/CortexMap/');
 
     expect(text).toBe(`📚 Мой план английского
 
 🎯 Уровни CEFR
 • B1: Intermediate · B1
-https://example.com/EnglishPath/plans/b1
+https://example.com/CortexMap/plans/b1
 
 📖 Учебники
 • English Grammar in Use · B1–B2
-https://example.com/EnglishPath/textbooks/english-grammar-in-use
+https://example.com/CortexMap/textbooks/english-grammar-in-use
 
 🔗 Ресурсы
 • BBC Learning English · Аудирование
-https://example.com/EnglishPath/resources/bbc
+https://example.com/CortexMap/resources/bbc
 
 Собрано в CortexMap
-https://example.com/EnglishPath/`);
+https://example.com/CortexMap/`);
   });
 
   test('omits empty sections', () => {

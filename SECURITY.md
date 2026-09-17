@@ -8,7 +8,7 @@
 
 Не публикуйте сведения об уязвимости в обычном issue. Используйте **Security → Advisories → New draft security advisory**:
 
-<https://github.com/Simifar/EnglishPath/security/advisories/new>
+<https://github.com/Simifar/CortexMap/security/advisories/new>
 
 Опишите затронутую страницу или файл, способ воспроизведения, возможное влияние и известный вам вариант исправления. Не включайте реальные секреты или персональные данные.
 

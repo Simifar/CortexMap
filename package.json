@@ -4,13 +4,13 @@
   "private": true,
   "description": "Русскоязычный статический справочник для самостоятельного изучения английского языка",
   "license": "MIT",
-  "homepage": "https://simifar.github.io/EnglishPath/",
+  "homepage": "https://simifar.github.io/CortexMap/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Simifar/EnglishPath.git"
+    "url": "https://github.com/Simifar/CortexMap.git"
   },
   "bugs": {
-    "url": "https://github.com/Simifar/EnglishPath/issues"
+    "url": "https://github.com/Simifar/CortexMap/issues"
   },
   "scripts": {
     "dev": "next dev -p 3000",

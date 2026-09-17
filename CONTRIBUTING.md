@@ -41,7 +41,7 @@ bun run build
 Если изменение затрагивает статическую публикацию, дополнительно выполните:
 
 ```bash
-bun run build:pages --base-path /EnglishPath --site-url https://example.github.io/EnglishPath/
+bun run build:pages --base-path /CortexMap --site-url https://example.github.io/CortexMap/
 bun run check:pages
 ```
 
