@@ -5,7 +5,7 @@ import { Check, Copy, Share2 } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { FavoritesButton } from './FavoritesButton';
 import { useFavorites } from '@/hooks/useFavorites';
-import { formatFavoritePlan } from '@/lib/favorite-export';
+import { formatFavoritePlan, formatFavoritePlanHtml } from '@/lib/favorite-export';
 import { withBasePath } from '@/lib/paths';
 
 export type FavoriteContent = { id: string; title: string; description: string; href: string; type: string; meta?: string };
@@ -32,6 +32,38 @@ async function copyText(text: string) {
   if (!copied) throw new Error('Copy command failed');
 }
 
+async function copyRichText(text: string, html: string) {
+  if (navigator.clipboard?.write && typeof ClipboardItem !== 'undefined') {
+    try {
+      await navigator.clipboard.write([new ClipboardItem({
+        'text/plain': new Blob([text], { type: 'text/plain' }),
+        'text/html': new Blob([html], { type: 'text/html' }),
+      })]);
+      return;
+    } catch {
+      // Fall back to the selection API for browsers with limited rich clipboard support.
+    }
+  }
+
+  const container = document.createElement('div');
+  container.contentEditable = 'true';
+  container.innerHTML = html;
+  container.style.position = 'fixed';
+  container.style.left = '-9999px';
+  document.body.appendChild(container);
+
+  const selection = window.getSelection();
+  const range = document.createRange();
+  range.selectNodeContents(container);
+  selection?.removeAllRanges();
+  selection?.addRange(range);
+  const copied = document.execCommand('copy');
+  selection?.removeAllRanges();
+  container.remove();
+
+  if (!copied) await copyText(text);
+}
+
 export function FavoritesList({ content }: { content: FavoriteContent[] }) {
   const { favoriteIds, ready, persistent } = useFavorites();
   const [actionStatus, setActionStatus] = useState<'idle' | 'copied' | 'shared' | 'error'>('idle');
@@ -42,11 +74,11 @@ export function FavoritesList({ content }: { content: FavoriteContent[] }) {
 
   const getPlan = () => {
     const homeUrl = new URL(withBasePath('/'), window.location.origin).toString();
-    return formatFavoritePlan(
-      favorites,
-      (href) => new URL(withBasePath(href), window.location.origin).toString(),
-      homeUrl,
-    );
+    const absoluteHref = (href: string) => new URL(withBasePath(href), window.location.origin).toString();
+    return {
+      text: formatFavoritePlan(favorites, absoluteHref, homeUrl),
+      html: formatFavoritePlanHtml(favorites, absoluteHref, homeUrl),
+    };
   };
 
   const showStatus = (status: typeof actionStatus) => {
@@ -57,7 +89,8 @@ export function FavoritesList({ content }: { content: FavoriteContent[] }) {
 
   const handleCopy = async () => {
     try {
-      await copyText(getPlan());
+      const plan = getPlan();
+      await copyRichText(plan.text, plan.html);
       showStatus('copied');
     } catch {
       showStatus('error');
@@ -68,7 +101,7 @@ export function FavoritesList({ content }: { content: FavoriteContent[] }) {
     const plan = getPlan();
     if (navigator.share) {
       try {
-        await navigator.share({ title: 'Мой план английского — CortexMap', text: plan });
+        await navigator.share({ title: 'Мой план английского — CortexMap', text: plan.text });
         showStatus('shared');
         return;
       } catch (error) {
@@ -77,7 +110,7 @@ export function FavoritesList({ content }: { content: FavoriteContent[] }) {
     }
 
     try {
-      await copyText(plan);
+      await copyRichText(plan.text, plan.html);
       showStatus('copied');
     } catch {
       showStatus('error');
@@ -90,7 +123,7 @@ export function FavoritesList({ content }: { content: FavoriteContent[] }) {
     <div className="mt-6 flex flex-col gap-3 rounded-xl border bg-muted/30 p-4 sm:flex-row sm:items-center sm:justify-between">
       <div>
         <p className="font-semibold">В избранном: {favorites.length}</p>
-        <p className="mt-1 text-sm text-muted-foreground">Скопируйте список со ссылками и отправьте его в Telegram или другой мессенджер.</p>
+        <p className="mt-1 text-sm text-muted-foreground">Названия станут ссылками — вставьте готовый план в Telegram или другой мессенджер.</p>
       </div>
       <div className="grid shrink-0 grid-cols-1 gap-2 min-[420px]:grid-cols-2">
         <button type="button" onClick={handleCopy} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border bg-background px-4 text-sm font-semibold transition-colors hover:bg-accent focus-visible:outline-2 focus-visible:outline-offset-2">

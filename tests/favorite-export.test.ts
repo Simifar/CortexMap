@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test';
-import { formatFavoritePlan } from '../src/lib/favorite-export';
+import { formatFavoritePlan, formatFavoritePlanHtml } from '../src/lib/favorite-export';
 
 describe('favorite plan export', () => {
   test('groups saved items and creates message-friendly absolute links', () => {
@@ -37,5 +37,15 @@ https://example.com/CortexMap/`);
     expect(text).toContain('🎓 Экзамены');
     expect(text).not.toContain('🎯 Уровни CEFR');
     expect(text).not.toContain('📖 Учебники');
+  });
+
+  test('creates rich text with links embedded in material titles', () => {
+    const html = formatFavoritePlanHtml([
+      { title: 'IELTS & TOEFL', href: '/exams/compare', type: 'Экзамен', meta: 'B2 < C1' },
+    ], (href) => `https://example.com/CortexMap${href}`, 'https://example.com/CortexMap/');
+
+    expect(html).toContain('<a href="https://example.com/CortexMap/exams/compare">IELTS &amp; TOEFL</a> · B2 &lt; C1');
+    expect(html).toContain('Собрано в <a href="https://example.com/CortexMap/">CortexMap</a>');
+    expect(html).not.toContain('https://example.com/CortexMap/exams/compare</div>');
   });
 });
