@@ -1,5 +1,6 @@
 node_modules/
 .next/
+.standalone/
 .next-pages/
 out/
 .env

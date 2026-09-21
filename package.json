@@ -14,8 +14,8 @@
   },
   "scripts": {
     "dev": "next dev -p 3000",
-    "build": "next build && cp -R .next/static .next/standalone/.next/ && cp -R public .next/standalone/",
-    "start": "bun run check:standalone && NODE_ENV=production bun .next/standalone/server.js",
+    "build": "next build && cp -R .next/static .next/standalone/.next/ && cp -R public .next/standalone/ && bun scripts/persist-standalone.ts",
+    "start": "bun run check:standalone && NODE_ENV=production bun .standalone/server.js",
     "lint": "eslint src",
     "validate:data": "bun src/data/index.ts",
     "validate-content": "bun scripts/validate-content.ts",
