@@ -76,6 +76,7 @@
   }
   body {
     @apply flex min-h-screen min-w-0 max-w-full flex-col bg-background text-foreground antialiased;
+    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom));
   }
   main { @apply min-w-0 max-w-full flex-1; }
   input, select, textarea { font-size: 16px; }
@@ -91,6 +92,7 @@
 
 @media print {
   header, footer, nav, button { display: none !important; }
+  body { padding-bottom: 0; }
   main { max-width: none !important; padding: 0 !important; }
   section, article { break-inside: avoid; }
 }

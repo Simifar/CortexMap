@@ -4,6 +4,7 @@ import './globals.css';
 import { withBasePath } from '@/lib/paths';
 import { siteDescription, siteName, siteUrl } from '@/lib/site';
 import { createRouteMetadata } from '@/lib/metadata';
+import { BottomNav } from '@/components/catalog/BottomNav';
 
 const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'], display: 'swap', preload: true });
 const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin'], display: 'swap', preload: false });
@@ -34,5 +35,5 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="ru" translate="no" suppressHydrationWarning><body suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-background font-sans text-foreground antialiased`}>{children}</body></html>;
+  return <html lang="ru" translate="no" suppressHydrationWarning><body suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-background font-sans text-foreground antialiased`}>{children}<BottomNav /></body></html>;
 }
