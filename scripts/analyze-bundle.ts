@@ -15,6 +15,9 @@ console.log(`Bundle size check passed: ${chunks.length} JavaScript chunks are be
 
 const exportRoot = join(process.cwd(), 'out');
 try { await access(exportRoot); } catch { process.exit(0); }
+const exportChunkRoot = join(exportRoot, '_next', 'static', 'chunks');
+const exportChunks = (await files(exportChunkRoot)).filter((file) => file.endsWith('.js'));
+const exportChunkSizes = new Map(await Promise.all(exportChunks.map(async (chunk) => [chunk, (await stat(chunk)).size] as const)));
 const htmlFiles = (await files(exportRoot)).filter((file) => file.endsWith('.html'));
 const chunkUrl = /<script[^>]+src=["']([^"']+\.js(?:\?[^"']*)?)["']/g;
 const routeSizes = await Promise.all(htmlFiles.map(async (file) => {
@@ -26,7 +29,7 @@ const routeSizes = await Promise.all(htmlFiles.map(async (file) => {
     const markerIndex = cleanUrl.indexOf(marker);
     if (markerIndex >= 0) referenced.add(cleanUrl.slice(markerIndex + marker.length).replaceAll('/', '\\'));
   }
-  const bytes = [...referenced].reduce((total, name) => total + (chunkSizes.get(join(root, name)) ?? 0), 0);
+  const bytes = [...referenced].reduce((total, name) => total + (exportChunkSizes.get(join(exportChunkRoot, name)) ?? 0), 0);
   const htmlPath = relative(exportRoot, file).replaceAll('\\', '/');
   const route = htmlPath === 'index.html' ? '/' : `/${htmlPath.replace(/\/index\.html$/, '').replace(/\.html$/, '')}`;
   return { route, bytes };
