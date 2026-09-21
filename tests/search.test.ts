@@ -30,3 +30,6 @@ test('exam search includes parts, organizations and score scales', () => {
   expect(searchCatalog({ q: 'ETS', type: 'exam' }).some(result => result.id === 'toefl')).toBe(true);
   expect(searchCatalog({ q: 'сопоставимый', type: 'exam' }).some(result => result.id === 'toefl')).toBe(true);
 });
+test('multi-term search still requires every term to match', () => {
+  expect(searchCatalog({ q: 'IELTS nonexistent' }).some(result => result.id === 'ielts')).toBe(false);
+});
