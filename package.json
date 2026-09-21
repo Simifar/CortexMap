@@ -32,7 +32,7 @@
     "check:standalone": "bun scripts/check-standalone.ts"
   },
   "dependencies": {
-    "lucide-react": "^0.525.0",
+    "lucide-react": "^1.47.0",
     "next": "^16.3.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
