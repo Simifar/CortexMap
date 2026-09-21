@@ -15,7 +15,7 @@
   "scripts": {
     "dev": "next dev -p 3000",
     "build": "next build && cp -R .next/static .next/standalone/.next/ && cp -R public .next/standalone/",
-    "start": "NODE_ENV=production bun .next/standalone/server.js",
+    "start": "bun run check:standalone && NODE_ENV=production bun .next/standalone/server.js",
     "lint": "eslint src",
     "validate:data": "bun src/data/index.ts",
     "validate-content": "bun scripts/validate-content.ts",
@@ -26,7 +26,8 @@
     "build:pages": "bun scripts/build-pages.ts",
     "preview:pages": "bun scripts/preview-pages.ts",
     "check:pages": "bun scripts/check-pages.ts",
-    "check:pages:runtime": "bun scripts/check-pages-runtime.ts"
+    "check:pages:runtime": "bun scripts/check-pages-runtime.ts",
+    "check:standalone": "bun scripts/check-standalone.ts"
   },
   "dependencies": {
     "lucide-react": "^0.525.0",
