@@ -25,7 +25,8 @@
     "test": "bun test",
     "build:pages": "bun scripts/build-pages.ts",
     "preview:pages": "bun scripts/preview-pages.ts",
-    "check:pages": "bun scripts/check-pages.ts"
+    "check:pages": "bun scripts/check-pages.ts",
+    "check:pages:runtime": "bun scripts/check-pages-runtime.ts"
   },
   "dependencies": {
     "lucide-react": "^0.525.0",
