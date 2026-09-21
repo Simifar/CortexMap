@@ -1,12 +1,27 @@
 const storageKey = 'cortexmap:favorites';
+const itemPrefix = `${storageKey}:item:`;
 type Snapshot = { ids: string[]; ready: boolean; persistent: boolean };
-type StorageAdapter = Pick<Storage, 'getItem' | 'setItem'>;
+type StorageAdapter = Pick<Storage, 'getItem' | 'setItem'> & Partial<Pick<Storage, 'removeItem' | 'key'>> & { readonly length?: number };
 
 function parseIds(raw: string | null): string[] {
   try {
     const value: unknown = JSON.parse(raw ?? '[]');
     return Array.isArray(value) ? [...new Set(value.filter((id): id is string => typeof id === 'string' && id.length > 0))] : [];
   } catch { return []; }
+}
+
+function readIds(storage: StorageAdapter): string[] {
+  const ids = new Set(parseIds(storage.getItem(storageKey)));
+  if (typeof storage.length !== 'number' || typeof storage.key !== 'function') return [...ids];
+
+  for (let index = 0; index < storage.length; index += 1) {
+    const key = storage.key(index);
+    if (!key?.startsWith(itemPrefix)) continue;
+    const id = key.slice(itemPrefix.length);
+    if (storage.getItem(key) === '1') ids.add(id);
+    else ids.delete(id);
+  }
+  return [...ids];
 }
 
 export function createFavoritesStore(getStorage: () => StorageAdapter, watchStorage: (onChange: (key: string | null) => void) => () => void) {
@@ -23,7 +38,7 @@ export function createFavoritesStore(getStorage: () => StorageAdapter, watchStor
   function refresh() {
     // Preserve unsaved changes in memory when browser storage is unavailable.
     if (snapshot.ready && !snapshot.persistent) return;
-    try { publish(parseIds(getStorage().getItem(storageKey)), true); }
+    try { publish(readIds(getStorage()), true); }
     catch { publish(snapshot.ids, false); }
   }
   return {
@@ -32,18 +47,22 @@ export function createFavoritesStore(getStorage: () => StorageAdapter, watchStor
     subscribe(listener: () => void) {
       listeners.add(listener);
       if (listeners.size === 1) {
-        stopWatching = watchStorage((key) => { if (key === storageKey || key === null) refresh(); });
+        stopWatching = watchStorage((key) => { if (key === storageKey || key === null || key.startsWith(itemPrefix)) refresh(); });
         refresh();
       }
       return () => { listeners.delete(listener); if (!listeners.size) { stopWatching?.(); stopWatching = undefined; } };
     },
     toggle(id: string) {
       refresh();
-      const ids = snapshot.ids.includes(id) ? snapshot.ids.filter((value) => value !== id) : [...snapshot.ids, id];
-      let persistent = true;
-      try { getStorage().setItem(storageKey, JSON.stringify(ids)); }
-      catch { persistent = false; }
-      publish(ids, persistent);
+      const present = !snapshot.ids.includes(id);
+      const ids = present ? [...snapshot.ids, id] : snapshot.ids.filter((value) => value !== id);
+      try {
+        const storage = getStorage();
+        // Per-item entries avoid unrelated cross-tab toggles overwriting one another.
+        storage.setItem(`${itemPrefix}${id}`, present ? '1' : '0');
+        storage.setItem(storageKey, JSON.stringify(ids));
+        publish(ids, true);
+      } catch { publish(ids, false); }
     },
   };
 }

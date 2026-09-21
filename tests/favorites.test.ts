@@ -34,4 +34,24 @@ describe('favorites', () => {
       const { store } = setup(raw); store.subscribe(() => {}); expect(store.getSnapshot().ids).toEqual(ids);
     }
   });
+  test('independent stores preserve unrelated concurrent toggles', () => {
+    const values = new Map([['cortexmap:favorites', '[]']]);
+    const listeners = new Set<(key: string | null) => void>();
+    const staleAdapter = () => {
+      let staleReads = 2;
+      return {
+        getItem: (key: string) => key === 'cortexmap:favorites' && staleReads-- > 0 ? '[]' : values.get(key) ?? null,
+        setItem: (key: string, value: string) => { values.set(key, value); listeners.forEach((listener) => listener(key)); },
+        removeItem: (key: string) => { values.delete(key); listeners.forEach((listener) => listener(key)); },
+        get length() { return values.size; },
+        key: (index: number) => [...values.keys()][index] ?? null,
+      };
+    };
+    const create = () => createFavoritesStore(staleAdapter, (listener) => { listeners.add(listener); return () => listeners.delete(listener); });
+    const first = create(); const second = create();
+    first.subscribe(() => {}); second.subscribe(() => {});
+    first.toggle('a1'); second.toggle('b1');
+    expect(first.getSnapshot().ids).toEqual(['a1', 'b1']);
+    expect(second.getSnapshot().ids).toEqual(['a1', 'b1']);
+  });
 });
