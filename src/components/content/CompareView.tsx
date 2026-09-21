@@ -31,7 +31,7 @@ const rows: { label: string; value: (exam: ExamGuide) => string }[] = [
 ];
 
 export function CompareFallback() {
-  return <main className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 sm:py-12"><h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Сравнение экзаменов</h1><p className="mt-4 text-muted-foreground">Загружаем данные…</p></main>;
+  return <><SiteHeader /><main className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 sm:py-12"><h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Сравнение экзаменов</h1><p className="mt-4 text-muted-foreground">Загружаем данные…</p></main><SiteFooter /></>;
 }
 
 export default function CompareView() {
