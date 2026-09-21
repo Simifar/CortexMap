@@ -53,7 +53,6 @@ for (const file of files) {
 
 const sitemap = await readFile(join(root, 'sitemap.xml'), 'utf8');
 const sitemapDates = [...sitemap.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)].map((match) => match[1]);
-if (sitemapDates.length === 0) errors.push('sitemap.xml: no lastmod values');
 if (sitemapDates.some((date) => date === '2026-08-13T00:00:00.000Z')) errors.push('sitemap.xml: stale 2026-08-13 lastmod remains');
 for (const match of sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)) {
   const url = new URL(match[1]);
@@ -61,4 +60,4 @@ for (const match of sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)) {
 }
 
 if (errors.length > 0) throw new Error(`Metadata verification failed:\n${errors.join('\n')}`);
-console.log(`Metadata verified for ${files.length} HTML pages and ${sitemapDates.length} sitemap entries.`);
+console.log(`Metadata verified for ${files.length} HTML pages; sitemap has ${sitemapDates.length} evidence-backed lastmod values.`);

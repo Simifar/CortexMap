@@ -1861,16 +1861,4 @@ const levelRecords: LevelPlan[] = [
   }
 ];
 
-const reviewDate = '2026-09-16';
-const cefrDescriptorsUrl = 'https://www.coe.int/en/web/common-european-framework-reference-languages/cefr-descriptors';
-
-export const levels: LevelPlan[] = levelRecords.map((level) => ({
-  ...level,
-  officialUrl: cefrDescriptorsUrl,
-  reviewStatus: 'verified',
-  verifiedAt: reviewDate,
-  linkCheckedAt: reviewDate,
-  grammar: level.grammar.map((topic) => ({ ...topic, officialUrl: cefrDescriptorsUrl, reviewStatus: 'verified', verifiedAt: reviewDate, linkCheckedAt: reviewDate })),
-  vocabulary: level.vocabulary.map((topic) => ({ ...topic, officialUrl: cefrDescriptorsUrl, reviewStatus: 'verified', verifiedAt: reviewDate, linkCheckedAt: reviewDate })),
-  skills: level.skills.map((topic) => ({ ...topic, officialUrl: cefrDescriptorsUrl, reviewStatus: 'verified', verifiedAt: reviewDate, linkCheckedAt: reviewDate })),
-}));
+export const levels: LevelPlan[] = levelRecords;

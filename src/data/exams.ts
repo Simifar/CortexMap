@@ -507,7 +507,6 @@ const examRecords: ExamGuide[] = [
   }
 ];
 
-const reviewDate = '2026-09-16';
 const cambridgeRegistration = {
   costNote: 'Стоимость зависит от страны и экзаменационного центра — уточняйте при записи',
   frequency: 'Цифровые экзамены доступны в течение года; бумажные проходят по расписанию центров',
@@ -591,7 +590,4 @@ const examReviewOverrides: Record<string, Partial<ExamGuide>> = {
 export const examGuides: ExamGuide[] = examRecords.map((exam) => ({
   ...exam,
   ...examReviewOverrides[exam.id],
-  reviewStatus: 'verified',
-  verifiedAt: reviewDate,
-  linkCheckedAt: reviewDate,
 }));

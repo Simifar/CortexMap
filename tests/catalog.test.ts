@@ -7,12 +7,12 @@ import before from '../docs/catalog-before-model-migration.json';
 const catalog = { levels, textbooks, resources, examGuides };
 const copy = () => structuredClone(catalog);
 
-test('every published record has current review metadata', () => {
+test('published records retain independent editorial review status', () => {
   const topics = levels.flatMap((level) => [...level.grammar, ...level.vocabulary, ...level.skills]);
   const records = [...levels, ...topics, ...textbooks, ...resources, ...examGuides];
   expect(records.length).toBe(144);
-  expect(records.every((record) => record.reviewStatus === 'verified')).toBe(true);
-  expect(records.every((record) => record.verifiedAt === '2026-09-16' && record.linkCheckedAt === '2026-09-16')).toBe(true);
+  expect(records.some((record) => record.reviewStatus === 'pending')).toBe(true);
+  expect(records.every((record) => record.reviewStatus === 'pending' ? record.verifiedAt === null : Boolean(record.verifiedAt && record.linkCheckedAt))).toBe(true);
 });
 
 test('migration preserves every published ID and URL', () => {

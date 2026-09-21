@@ -784,15 +784,4 @@ const textbookRecords: Textbook[] = [
   }
 ];
 
-const reviewDate = '2026-09-16';
-
-export const textbooks: Textbook[] = textbookRecords.map((textbook) => ({
-  ...textbook,
-  audience: `Изучающие английский на уровне ${textbook.cefrLevels.join('–')}, которым нужны материалы по направлениям: ${textbook.purpose.join(', ').toLowerCase()}.`,
-  howToUse: 'Работайте по разделам последовательно, выполняйте упражнения письменно и регулярно возвращайтесь к ошибкам; аудио, ключи и дополнительные компоненты сверяйте по выбранному изданию.',
-  limitations: ['Издание, комплектация, наличие ключей и цифровых материалов зависят от конкретной версии; проверяйте ISBN и состав комплекта перед покупкой.'],
-  registration: 'no',
-  reviewStatus: 'verified',
-  verifiedAt: reviewDate,
-  linkCheckedAt: reviewDate,
-}));
+export const textbooks: Textbook[] = textbookRecords;
