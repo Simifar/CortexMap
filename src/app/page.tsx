@@ -1,6 +1,5 @@
 import { withBasePath } from '@/lib/paths';
 import Link from 'next/link';
-import type { Metadata } from 'next';
 import { ArrowRight, ClipboardList, GraduationCap, LibraryBig, Search } from 'lucide-react';
 import { examGuides, levels, resources, type ResourceCategory } from '@/data';
 import { SiteHeader } from '@/components/catalog/SiteHeader';
@@ -8,12 +7,13 @@ import { SiteFooter } from '@/components/catalog/SiteFooter';
 import { CefrLevelIcon } from '@/components/content/CefrLevelIcon';
 import { ExamCard } from '@/components/content/ExamCard';
 import { SearchInput } from '@/components/catalog/SearchInput';
+import { createRouteMetadata } from '@/lib/metadata';
 
-export const metadata: Metadata = {
+export const metadata = createRouteMetadata({
   title: 'CortexMap — подготовка к экзаменам по английскому',
   description: 'Справочник по IELTS, TOEFL и Cambridge English: формат экзаменов, шкалы оценивания, планы подготовки и официальные материалы.',
-  alternates: { canonical: '/' },
-};
+  path: '/',
+});
 
 const resourceCategories: { category: ResourceCategory; label: string }[] = [
   { category: 'grammar', label: 'Грамматика' },

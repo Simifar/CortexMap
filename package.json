@@ -26,6 +26,7 @@
     "build:pages": "bun scripts/build-pages.ts",
     "preview:pages": "bun scripts/preview-pages.ts",
     "check:pages": "bun scripts/check-pages.ts",
+    "check:pages:metadata": "bun scripts/check-pages-metadata.ts",
     "check:pages:runtime": "bun scripts/check-pages-runtime.ts",
     "check:standalone": "bun scripts/check-standalone.ts"
   },

@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { SiteHeader } from '@/components/layout/SiteHeader';
+import { createRouteMetadata } from '@/lib/metadata';
 
 type PageProps = { params: Promise<{ exam: string }> };
 
@@ -20,7 +21,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { exam: slug } = await params;
   const exam = examGuides.find((item) => item.slug === slug);
   return exam
-    ? { title: `${exam.title}: подготовка`, description: exam.description, alternates: { canonical: `/exams/${exam.slug}` }, openGraph: { title: `${exam.title}: подготовка`, description: exam.description } }
+    ? createRouteMetadata({ title: `${exam.title}: подготовка`, description: exam.description, path: `/exams/${exam.slug}` })
     : { title: 'Экзамен не найден', robots: { index: false } };
 }
 

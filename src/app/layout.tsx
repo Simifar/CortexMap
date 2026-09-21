@@ -2,15 +2,16 @@ import type { Metadata, Viewport } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import { withBasePath } from '@/lib/paths';
-import { absoluteSiteUrl, siteDescription, siteName, siteUrl } from '@/lib/site';
+import { siteDescription, siteName, siteUrl } from '@/lib/site';
+import { createRouteMetadata } from '@/lib/metadata';
 
 const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'], display: 'swap', preload: true });
 const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin'], display: 'swap', preload: false });
 
 export const metadata: Metadata = {
+  ...createRouteMetadata({ title: siteName, description: siteDescription, path: '/' }),
   metadataBase: siteUrl,
   title: { default: siteName, template: `%s — ${siteName}` },
-  description: siteDescription,
   applicationName: siteName,
   manifest: withBasePath('/manifest.webmanifest'),
   appleWebApp: { capable: true, statusBarStyle: 'default', title: siteName },
@@ -20,9 +21,6 @@ export const metadata: Metadata = {
     shortcut: withBasePath('/logo.svg'),
     apple: [{ url: withBasePath('/icons/apple-touch-icon.png'), sizes: '180x180', type: 'image/png' }],
   },
-  alternates: { canonical: '/' },
-  openGraph: { type: 'website', locale: 'ru_RU', siteName, title: siteName, description: siteDescription, url: '/', images: [absoluteSiteUrl('opengraph-image.png')] },
-  twitter: { card: 'summary_large_image', title: siteName, description: siteDescription, images: [absoluteSiteUrl('opengraph-image.png')] },
 };
 
 export const viewport: Viewport = {
